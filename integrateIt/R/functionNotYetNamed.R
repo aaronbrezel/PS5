@@ -1,12 +1,14 @@
-#' Adding squared values
+#' Trapazoidal or Simpsons integration
 #'
-#' Finds the sum of squared numbers
+#' Integrates two vectors of "x" and "y" values via the Trapazoid or Simpsons method
 #'
-#' @param x A numeric object
-#' @param y A numeric object with the same dimensionality as \code{x}.
+#' @param x The vector of x values
+#' @param y The vector of corresponding y values with the same dimensionality as \code{x}.
+#' @param startAndEnd The length = 2 vector of the start and end "x" values of the itegration
+#' @param rule A string value, either "Trap" or "Simpsons" to indicate which integration should be performed
 #'
-#' @return An object of class Squares containing
-#'  \item{squares}{The sum of the squared values}
+#' @return An object of class Trapazoid or Simpsons, the x and y vectors and the result of the integration
+#'  \item{x}{The vector of x values}
 #'  \item{x}{The first object input} 
 #'  \item{y}{The second object input}
 #' @author Jacob M. Montgomery

@@ -1,51 +1,65 @@
-#' A squared value object 
+#' A Trapezoidal or Simpsons integration object 
 #' 
-#' Object of class \code{SquaresPack} are created by the \code{addSquares} and \code{subtractSquares} functions
+#' Object of class \code{integrateIt} are created by the \code{integrateIt} functions
 #'
 #' 
-#' An object of the class `SquaresPack' has the following slots:
+#' An object of the class `integrateIt' has the following slots:
 #' \itemize{
-#' \item \code{square} The added or subtracted squared values
-#' \item \code{x} The first input
-#' \item \code{y} the second input 
+#' \item \code{x} The vector of x values
+#' \item \code{y} The vector of corresponding y values
+#' \item \code{startAndEnd} The length = 2 vector of the start and end "x" values of the itegration
+#' \item \code{rule} A string value, either "Trap" or "Simpsons" to indicate which integration should be performed
 #' }
 #'
-#' @author Jacob M. Montgomery: \email{jacob.montgomery@@wustl.edu}
+#' @author Aaron J. Brezel: \email{aaronbrezel@@wustl.edu}
+#What are aliases and are they useful?
 #' @aliases Squares-class initialize,Squares-method getSquares,Squares-method 
-#' @rdname Squares
+#' @rdname TrapAndSimpsons
 #' @export
-setClass(Class="Squares", 
+setClass(Class="Trapazoid", 
          representation = representation(
-           square = "numeric",
            x = "numeric",
-           y = "numeric"
+           y = "numeric",
+           startAndEnd = "numeric",
+           rule = "character"
          ),
          prototype = prototype(
            square = c(),
            x = c(),
-           y = c()
+           y = c(),
+           rule = c()
          )
 )
 
 #' @export
-setMethod("initialize", "Squares", 
+setClass(Class="Simpsons", 
+         representation = representation(
+           x = "numeric",
+           y = "numeric",
+           startAndEnd = "numeric",
+           rule = "string"
+         ),
+         prototype = prototype(
+           square = c(),
+           x = c(),
+           y = c(),
+           rule = c()
+         )
+)
+
+#' @export
+setMethod("initialize", "Trapazoid", 
           function(.Object, ...){
             value=callNextMethod()
             return(value)
           }
 ) 
 
-#' @rdname Squares
-#' @export 
-setGeneric("getSquares",
-           function(object="Squares")  {
-             standardGeneric("getSquares")
-           }
-)
-
 #' @export
-setMethod("getSquares", "Squares",
-          function(object){ 
-            return(object@square)
+setMethod("initialize", "Simpsons", 
+          function(.Object, ...){
+            value=callNextMethod()
+            return(value)
           }
-)
+) 
+
