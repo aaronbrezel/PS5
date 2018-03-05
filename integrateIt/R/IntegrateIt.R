@@ -1,65 +1,37 @@
-#' A Trapezoidal or Simpsons integration object 
-#' 
-#' Object of class \code{integrateIt} are created by the \code{integrateIt} functions
+#' Trapazoidal or Simpsons integration
 #'
-#' 
-#' An object of the class `integrateIt' has the following slots:
-#' \itemize{
-#' \item \code{x} The vector of x values
-#' \item \code{y} The vector of corresponding y values
-#' \item \code{startAndEnd} The length = 2 vector of the start and end "x" values of the itegration
-#' \item \code{rule} A string value, either "Trap" or "Simpsons" to indicate which integration should be performed
-#' }
+#' Integrates two vectors of "x" and "y" values via the Trapazoid or Simpsons method
 #'
-#' @author Aaron J. Brezel: \email{aaronbrezel@@wustl.edu}
-#What are aliases and are they useful?
-#' @aliases Squares-class initialize,Squares-method getSquares,Squares-method 
-#' @rdname TrapAndSimpsons
+#' @param x The vector of x values
+#' @param y The vector of corresponding y values with the same dimensionality as \code{x}.
+#' @param startAndEnd The length = 2 vector of the start and end "x" values of the itegration
+#' @param rule A string value, either "Trap" or "Simpsons" to indicate which integration should be performed
+#'
+#' @return An object of class Trapazoid or Simpsons, the x and y vectors and the result of the integration
+#'  \item{x}{The vector of x values}
+#'  \item{x}{The first object input} 
+#'  \item{y}{The second object input}
+#' @author Jacob M. Montgomery
+#' @note This is a very simple function
+#' @examples
+#' 
+#' myX <- c(20, 3) 
+#' myY <- c(-2, 4.1) 
+#' addSquares(myX, myY)
+#' @seealso \code{\link{subtractSquares}}
+#' @rdname addSquares
+#' @aliases addSquares,ANY-method
 #' @export
-setClass(Class="Trapazoid", 
-         representation = representation(
-           x = "numeric",
-           y = "numeric",
-           startAndEnd = "numeric",
-           rule = "character"
-         ),
-         prototype = prototype(
-           square = c(),
-           x = c(),
-           y = c(),
-           rule = c()
-         )
-)
+setGeneric(name="addSquares",
+           def=function(x, y, ...)
+           {standardGeneric("addSquares")}
+           )
 
 #' @export
-setClass(Class="Simpsons", 
-         representation = representation(
-           x = "numeric",
-           y = "numeric",
-           startAndEnd = "numeric",
-           rule = "string"
-         ),
-         prototype = prototype(
-           square = c(),
-           x = c(),
-           y = c(),
-           rule = c()
-         )
-)
-
-#' @export
-setMethod("initialize", "Trapazoid", 
-          function(.Object, ...){
-            value=callNextMethod()
-            return(value)
+setMethod(f="addSquares",
+          definition=function(x, y, ...){
+            return(new("Squares", square=(x^2 + y^2), x = x, y = y))
           }
-) 
+          )
 
-#' @export
-setMethod("initialize", "Simpsons", 
-          function(.Object, ...){
-            value=callNextMethod()
-            return(value)
-          }
-) 
 
