@@ -3,7 +3,7 @@
 #' Object of class \code{integrateIt} are created by the \code{integrateIt} functions
 #'
 #' 
-#' An object of the class "Trapazoid" or "Simpsons" has the following slots:
+#' An object of the class "Trapezoid" or "Simpsons" has the following slots:
 #' \itemize{
 #' \item \code{x} The vector of x values
 #' \item \code{y} The vector of corresponding y values
@@ -11,11 +11,9 @@
 #' }
 #'
 #' @author Aaron J. Brezel: \email{aaronbrezel@@wustl.edu}
-#What are aliases and are they useful?
-#' @aliases Squares-class initialize,Squares-method getSquares,Squares-method 
 #' @rdname TrapAndSimpsons
 #' @export
-setClass(Class="Trapazoid", 
+setClass(Class="Trapezoid", 
          representation = representation(
            x = "numeric",
            y = "numeric",
@@ -36,7 +34,6 @@ setClass(Class="Simpsons",
            integral = "numeric"
          ),
          prototype = prototype(
-           square = c(),
            x = c(),
            y = c(),
            integral = c()
@@ -44,7 +41,7 @@ setClass(Class="Simpsons",
 )
 
 #' @export
-setMethod("initialize", "Trapazoid", 
+setMethod("initialize", "Trapezoid", 
           function(.Object, ...){
             value=callNextMethod()
             return(value)
@@ -60,16 +57,16 @@ setMethod("initialize", "Simpsons",
 ) 
 
 #' @export
-setValidity("Trapazoid", function(object){
+setValidity("Trapezoid", function(object){
   if(length(x) == 1){
     return("Yo, you can't take an integral with one value")
   }
   else if(!identical(length(object@x), length(object@y))){ #x and y need to have an identical length to correspond correctly
     return("Yo, vectors x and y must have identical lengths")
   }
-  else if(length(object@x) %% 2 != 0){
-    return("Yo, went doing a trapazoidal integration, x must have an even number of vectors")
-  }
+  #else if(length(object@x) %% 2 != 0){
+  #  return("Yo, went doing a trapezoidal integration, x must have an even number of vectors")
+  #}
 })
 
 setValidity("Simpsons", function(object){

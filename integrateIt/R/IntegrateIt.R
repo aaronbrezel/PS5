@@ -33,23 +33,23 @@ setMethod(f="integrateIt",
           definition=function(x, y, startAndEnd, rule){
             h <- (max(x) - min(x))/(length(x)-1)
             XandY <- data.frame(x,y)
-            if(length(startAndEnd != 2)){# startAndEnd must only have two values as they are the start and end points of the integrals 
+            if(length(startAndEnd) != 2){# startAndEnd must only have two values as they are the start and end points of the integrals 
               return("Yo, your startAndEnd vector must only contain two values")
             }
             else if(startAndEnd[1] > startAndEnd[2]){# The first value of startAndEnd must be smaller than the second 
               return("Yo, the second value of startAndEnd must be larger than the first ")
             }
-            else if(startAndEnd[1] %in% x && startAndEnd[2] %in% x){# Both values of startAndEnd must be within x 
+            else if(!is.element(startAndEnd[1],x) || !is.element(startAndEnd[2],x)){# Both values of startAndEnd must be within x 
               return("Yo, both values of startAndEnd must be included in x")
             }
             else if(identical(rule, "Trap")){
               y[1] <- y[1]/2
               y[length(y)] <- y[length(y)]/2
               integral = sum(y)*h
-              newObject <- new("Trapazoid", x = x, y = y, startAndEnd = startAndEnd, rule = rule, integral = integral)
+              newObject <- new("Trapezoid", x = x, y = y, integral = integral)
               return(list(newObject, XandY, integral))
             }
-            else if(identical(trapOrSimpsons, "Simpsons")){
+            else if(identical(rule, "Simpsons")){
               newY <- y[-c(1, length(y))]
               #creates indices of odd and even indices in newY 
               even_indices <- seq(2, length(newY), 2)
@@ -57,7 +57,7 @@ setMethod(f="integrateIt",
               2*newY[c(even_indices)]
               4*newY[c(odd_indices)]
               integral <- (h/3)*(sum(y[1], 4*newY[c(odd_indices)], 2*newY[c(even_indices)], y[length(y)]))
-              newObject <- new("Simpsons", x = x, y = y, startAndEnd = startAndEnd, rule = rule, integral = integral)
+              newObject <- new("Simpsons", x = x, y = y,integral = integral)
               return(list(newObject, XandY, integral))
             }
             else{

@@ -1,0 +1,17 @@
+Package: integrateIt
+Title: Calculating Integrals with Trapezoids and Simpsons
+Version: 0.1
+Author: Aaron J. Brezel
+Maintainer: Aaron J. Brezel <aaronbrezel@wustl.edu>
+Description: Calculate integrals based on the Trapezoidal or Simpsons method
+Depends:
+  R (>= 3.0.0),
+  methods
+License: GPL (>= 2)
+Suggests:
+  devtools
+Collate:
+  'TrapAndSimpsonsClass.R'
+  'integrateIt.R'
+  'integratePrint.R'
+RoxygenNote: 6.0.1

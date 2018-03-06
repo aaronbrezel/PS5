@@ -1,48 +1,39 @@
-context("Adding squares")
+#startAndEnd vector only has 2 values
+#second value is larger than the first 
+#rule must be identical to "Trap" or "Simpsons"
+#An example of the simpsons integral works
+#An example of the trapezoid integral works
 
-test_that("squares add correctly", {
-  expect_that(addSquares(2,3), equals(new("Squares", square=(13), x = 2, y = 3)))
-  expect_that(addSquares(2,2), equals(new("Squares", square=(8), x = 2, y = 2)))
+context("Integrate it")
+
+#test_that("The integrate it Trap method produces the correct result", {
+#  expect_that(integrateIt(x = c(1,2,3,4,5), y = c(1,4,9,16,25), startAndEnd = c(1,5), rule = "Trap"), equals(list(new("Trapezoid", x = x, y = y, integral = 42), XandY = data.frame(x,y), integral = 42)))
+#})
+
+#test_that("The integrate it Simpsons method produces the correct result", {
+#  expect_that(integrateIt(x = c(1,2,3,4,5), y = c(1,4,9,16,25), startAndEnd = c(1,5), rule = "Simpsons"), equals(list(new("Trapezoid", x = x, y = y, integral = 41.33333), XandY = data.frame(x,y), integral = 41.33333)))
+#})
+
+test_that("The integrate it Trap method produces the correct result", {
+  expect_that(integrateIt(c(1,2,3,4,5), c(1,4,9,16,25), c(1,5), "Trap")[[3]], equals(42))
 })
 
-test_that("Input is correct. No characters or stuff like that",{
-  expect_error(addSquares("p"))
+test_that("The integrate it Simpsons method produces the correct result", {
+  expect_that(integrateIt(c(1,2,3,4,5), c(1,4,9,16,25), c(1,5), "Simpsons")[[3]], equals(41.333333333333))
+})
+
+
+test_that("Input is correct. The format should be integrateIt(vector,vector, vector, character)",{
+  expect_error(integrateIt("p"))
   
 })
 
-test_that("Class of output is correct. We want Squares",{
-  expect_is(addSquares(1,2), "Squares")
+test_that("Class of output is correct. We want Trapezoid",{
+  expect_is(integrateIt(x = c(1,2,3,4,5), y = c(1,4,9,16,25), startAndEnd = c(1,5), rule = "Trap")[[1]], "Trapezoid")
+})
+
+test_that("Class of output is correct. We want Simpsons",{
+  expect_is(integrateIt(x = c(1,2,3,4,5), y = c(1,4,9,16,25), startAndEnd = c(1,5), rule = "Simpsons")[[1]], "Simpsons")
 })
 
 
-context("Subtracting squares")
-
-test_that("squares subtract correctly", {
-  expect_that(subtractSquares(9,2), equals(new("Squares", square=(77), x = 9, y = 2)))
-  expect_that(subtractSquares(2,2), equals(new("Squares", square=(0), x = 2, y = 2)))
-})
-
-test_that("Input is correct. No characters or stuff like that",{
-  expect_error(subtractSquares("p"))
-  
-})
-
-test_that("Class of output is correct. We want Squares",{
-  expect_is(subtractSquares(1,2), "Squares")
-})
-
-context("Multiply squares")
-
-test_that("squares subtract correctly", {
-  expect_that(multiplySquares(4,2), equals(new("Squares", square=(64), x = 4, y = 2)))
-  expect_that(multiplySquares(2,2), equals(new("Squares", square=(16), x = 2, y = 2)))
-})
-
-test_that("Input is correct. No characters or stuff like that",{
-  expect_error(multiplySquares("p"))
-  
-})
-
-test_that("Class of output is correct. We want Squares",{
-  expect_is(multiplySquares(1,2), "Squares")
-})
