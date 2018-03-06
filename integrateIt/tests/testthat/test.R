@@ -36,4 +36,15 @@ test_that("Class of output is correct. We want Simpsons",{
   expect_is(integrateIt(x = c(1,2,3,4,5), y = c(1,4,9,16,25), startAndEnd = c(1,5), rule = "Simpsons")[[1]], "Simpsons")
 })
 
+context("Integrate it")
+
+test_that("The print Trap method produces the correct result", {
+  expect_that(print(new("Trapezoid", x = c(1,2,3,4,5), y = c(1,4,9,16,25), integral = 42)) , equals(42))
+})
+
+test_that("The print Simpsons method produces the correct result", {
+  expect_that(print(new("Simpsons", x = c(1,2,3,4,5), y = c(1,4,9,16,25), integral = 41.333333333333)) , equals(41.333333333333))
+})
+
+
 

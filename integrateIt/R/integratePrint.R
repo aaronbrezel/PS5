@@ -17,7 +17,7 @@
 
 
 #' @export
-setMethod(f="print",
+setMethod(f="print", 
           definition=function(object){
            print(object@integral)
           }

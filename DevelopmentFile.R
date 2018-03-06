@@ -12,7 +12,12 @@ load_all(current.code)
 document(current.code)
 test(current.code)
 
+#Test code
+x <- c(1,2,3,4,5)
+y <- c(1,4,9,16,25)
 
-
+startAndEnd <- c(1,5)
+integrateIt(x,y, startAndEnd, "Trap")
+print(integrateIt(x,y, startAndEnd, "Trap"))
 
 
