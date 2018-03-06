@@ -18,6 +18,8 @@ y <- c(1,4,9,16,25)
 
 startAndEnd <- c(1,5)
 integrateIt(x,y, startAndEnd, "Trap")
+output <- integrateIt(x,y, startAndEnd, "Trap")
+print(output)
 print(integrateIt(x,y, startAndEnd, "Trap"))
 
 

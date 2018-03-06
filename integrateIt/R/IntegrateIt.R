@@ -47,7 +47,7 @@ setMethod(f="integrateIt",
               y[length(y)] <- y[length(y)]/2
               integral = sum(y)*h
               newObject <- new("Trapezoid", x = x, y = y, integral = integral)
-              return(list(newObject, XandY, integral))
+              return(newObject)
             }
             else if(identical(rule, "Simpsons")){
               newY <- y[-c(1, length(y))]
@@ -58,7 +58,7 @@ setMethod(f="integrateIt",
               4*newY[c(odd_indices)]
               integral <- (h/3)*(sum(y[1], 4*newY[c(odd_indices)], 2*newY[c(even_indices)], y[length(y)]))
               newObject <- new("Simpsons", x = x, y = y,integral = integral)
-              return(list(newObject, XandY, integral))
+              return(newObject)
             }
             else{
               return("rule must be a character string either 'Trap' or 'Simpsons'")

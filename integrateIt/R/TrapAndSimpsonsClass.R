@@ -58,7 +58,7 @@ setMethod("initialize", "Simpsons",
 
 #' @export
 setValidity("Trapezoid", function(object){
-  if(length(x) == 1){
+  if(length(object@x) == 1){
     return("Yo, you can't take an integral with one value")
   }
   else if(!identical(length(object@x), length(object@y))){ #x and y need to have an identical length to correspond correctly
@@ -70,7 +70,7 @@ setValidity("Trapezoid", function(object){
 })
 
 setValidity("Simpsons", function(object){
-  if(length(x) == 1){
+  if(length(object@x) == 1){
     return("Yo, you can't take an integral with one value")
   }
   else if(!identical(length(object@x), length(object@y))){ #x and y need to have an identical length to correspond correctly

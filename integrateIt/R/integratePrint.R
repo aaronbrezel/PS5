@@ -19,14 +19,14 @@
 #' @export
 setMethod("print", "Trapezoid", 
           function(x){
-            cat(x@integral)
+            return(x@integral)
           }
 )
 
 #' @export
 setMethod("print", "Simpsons",
           function(x){
-            cat(x@integral)
+            return(x@integral)
           }
 )
 
