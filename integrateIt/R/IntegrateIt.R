@@ -26,7 +26,7 @@
 setGeneric(name="integrateIt",
            def=function(x, y, startAndEnd, rule)
            {standardGeneric("integrateIt")}
-           )
+)
 
 #' @export
 setMethod(f="integrateIt",
@@ -64,7 +64,6 @@ setMethod(f="integrateIt",
               return("rule must be a character string either 'Trap' or 'Simpsons'")
             }
           }
-        )
-
+)
 
 

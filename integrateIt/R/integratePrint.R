@@ -2,7 +2,7 @@
 #'
 #' prints the output of a vector of x and y values integrated via the trapazoidal or simpsons method
 #'
-#' @param object An object of either "Trapezoid" or "Simpsons" class
+#' @param x An object of either "Trapezoid" or "Simpsons" class
 #'
 #' @return An object of class Trapezoid or Simpsons, the x and y vectors and the result of the integration
 #'  \item{result}{The original object of class Trapazoid or Simpson}
@@ -17,17 +17,16 @@
 
 
 #' @export
-setMethod(f="print", 
-          definition=function(object){
-           print(object@integral)
+setMethod("print", "Trapezoid", 
+          function(x){
+            print(x@integral)
           }
 )
 
 #' @export
-setMethod(f="print",
-          definition=function(object){
-            print(object@integral)
+setMethod("print", "Simpsons",
+          function(x){
+            print(x@integral)
           }
 )
-
 
